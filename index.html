@@ -2,8 +2,8 @@
 <html>
 
 <head>
-    <title>Entity-Component - Registry</title>
-    <meta name="description" content="Entity-Component - Registry">
+    <title>GuateGeeks</title>
+    <meta name="description" content="GuateGeeks">
     <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>a
 </head>
@@ -14,19 +14,23 @@
     overlayElement: #overlay;">
         <a-assets>
             <a-asset-item id="ship" src="assets/3d/nx12/scene.gltf"></a-asset-item>
+            <a-asset-item id="earth" src="assets/3d/earth/scene.gltf"></a-asset-item>
+            <a-asset-item id="capsule" src="assets/3d/space_capsule/scene.gltf"></a-asset-item>
             <a-asset-item id="blackhole" src="assets/3d/blackhole/scene.gltf"></a-asset-item>
             <a-asset-item id="hologram" src="assets/3d/earth_hologram/scene.gltf"></a-asset-item>
             <video id="space" autoplay loop="true" src="assets/videos/space.mp4"> </video>
             <video id="car" autoplay loop="true" src="assets/videos/car.mp4"> </video>
         </a-assets>
-        <a-entity camera look-controls wasd-controls position="0 1.6 0.6"></a-entity>
-        <a-entity   position="100 -5 -20"  gltf-model="#blackhole" animation-mixer></a-entity>
+        <a-entity camera look-controls wasd-controls position="0 2.5 0.6"></a-entity>
+        <a-entity position="200 -5 -20"  gltf-model="#blackhole" animation-mixer></a-entity>
+        <a-entity  position="-20 -5 -50" scale="0.005 0.005 0.005" gltf-model="#earth" animation-mixer></a-entity>
         <!-- Using the asset management system. -->
         <a-videosphere src="#space"></a-videosphere>
         <!--
             <a-video src="#car" width="0.5" height="0.2" position="0 1.5 0"></a-video>
         -->
-        <a-entity gltf-model="#ship" animation-mixer></a-entity>
+        <a-entity gltf-model="#ship" rotation="0 180 0"  position="-10 0 0"> </a-entity>
+        <a-entity gltf-model="#capsule" rotation="0 180 0"  animation-mixer></a-entity>
         <a-entity scale="0.05 0.05 0.05" position="0 1.5 0" gltf-model="#hologram" animation-mixer></a-entity>
         
 
