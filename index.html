@@ -7,15 +7,19 @@
     <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
     <script src="https://unpkg.com/aframe-websurfaces@1.4.0/dist/aframe-websurfaces.umd.js"></script>
+    <script src="https://unpkg.com/aframe-environment-component@1.2.0/dist/aframe-environment-component.min.js"></script>
     <script src="aframe.js" type="module"></script>
 </head>
 
 <body>
-    <a-scene webxr="requiredFeatures: hit-test,local-floor;
+    <a-scene environment webxr="requiredFeatures: hit-test,local-floor;
     optionalFeatures: dom-overlay,unbounded;
     overlayElement: #overlay;"
         inspector="https://cdn.jsdelivr.net/gh/aframevr/aframe-inspector@master/dist/aframe-inspector.min.js">
         <a-assets>
+            <a-asset-item id="sistema-solar" src="assets/3d/sistema-solar/scene.gltf"></a-asset-item>
+            <a-asset-item id="simbiont-obj" src="assets/3d/simbiont/tinker.obj"></a-asset-item>
+            <a-asset-item id="simbiont-mtl" src="assets/3d/simbiont/obj.mtl"></a-asset-item>            
             <a-asset-item id="ship" src="assets/3d/nx12/scene.gltf"></a-asset-item>
             <a-asset-item id="earth" src="assets/3d/planet-earth/scene.gltf"></a-asset-item>
             <a-asset-item id="capsule" src="assets/3d/space_capsule/scene.gltf"></a-asset-item>
@@ -23,21 +27,32 @@
             <a-asset-item id="hologram" src="assets/3d/earth_hologram/scene.gltf"></a-asset-item>
             <video id="space" autoplay loop="true" src="assets/videos/space.mp4"> </video>
             <video id="car" autoplay loop="true" src="assets/videos/car.mp4"> </video>
+            <img id="marsThumbnail" src="assets/img/mars.jpg">
         </a-assets>
-        <a-entity wasd-controls="acceleration: 20;" camera="active: true" look-controls="pointerLockEnabled: false">
-            <a-cursor position="0 0 -.05" scale=".04 .04 0"></a-cursor>
+        <a-entity wasd-controls="acceleration: 20;" camera="active: true" look-controls="pointerLockEnabled: false"  position="0 2 0">
+            <a-entity cursor="fuse: true; fuseTimeout: 500; rayOrigin: mouse"
+            position="0 0 -3"
+            geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.03"
+            material="color: black; shader: flat"></a-entity>
             <a-entity gltf-model="#capsule" rotation="0 180 0" position="0 -2.5 -0.5"></a-entity>
         </a-entity>
-        <a-entity websurface="url:https://www.youtube.com/embed/_25I-F1FxZQ; width:4; height:2;" scale="0.2 0.2" position="0 0 -1.1"></a-entity>
+        
+        <a-link href="mars.html" highlighted="true" bordercolor="red" title="Marte" titlecolor="red" position="0 5 -20" scale="5 5 0.00001" image="#marsThumbnail"   link=" borderColor: #000000; highlightedColor: #00bfff; titleColor: #000000"></a-link>
+
+
+        <a-entity websurface="url:https://www.youtube.com/embed/_25I-F1FxZQ; width:4; height:2;" scale="2 2" position="-8 2 -10.1"></a-entity>
         <a-entity mirror scale="10 10 10"></a-entity>
-        <a-entity position="200 -5 -20" gltf-model="#blackhole" animation-mixer></a-entity>
         <a-entity position="-20 -5 -50" gltf-model="#earth" animation-mixer></a-entity>
+
         <!--
+            <a-entity gltf-model="#sistema-solar" position="50 -5 -20" scale="0.01 0.01 0.01" animation-mixer></a-entity>
+            <a-entity position="200 -5 -20" gltf-model="#blackhole" animation-mixer></a-entity>
             <a-entity gltf-model="#ship"  position="0 -1.5 -1"> </a-entity>
         -->
         <!-- Using the asset management system. -->
-        <a-videosphere src="#space"></a-videosphere>
+        
         <!--
+            <a-videosphere src="#space"></a-videosphere>
             <a-video src="#car" width="0.5" height="0.2" position="0 1.5 0"></a-video>
             <a-entity scale="0.05 0.05 0.05" position="0 1.5 0" gltf-model="#hologram" animation-mixer></a-entity>
         -->
