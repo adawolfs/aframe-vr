@@ -4,15 +4,17 @@
 <head>
     <title>GuateGeeks</title>
     <meta name="description" content="GuateGeeks">
+    <script src="https://mixedreality.mozilla.org/ammo.js/builds/ammo.wasm.js"></script>
     <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
-    <script src="https://unpkg.com/aframe-websurfaces@1.4.0/dist/aframe-websurfaces.umd.js"></script>
-    <script src="https://unpkg.com/aframe-environment-component@1.2.0/dist/aframe-environment-component.min.js"></script>
+    <script src="/lib/aframe-environment-component/index.js" ></script>
+    <script src="/lib/aframe-physics-system/dist/aframe-physics-system.js"></script>
     <script src="aframe.js" type="module"></script>
+
 </head>
 
 <body>
-    <a-scene webxr="requiredFeatures: hit-test,local-floor;
+    <a-scene physics="driver: ammo; debug: true" webxr="requiredFeatures: hit-test,local-floor;
     optionalFeatures: dom-overlay,unbounded;
     overlayElement: #overlay;"
         inspector="https://cdn.jsdelivr.net/gh/aframevr/aframe-inspector@master/dist/aframe-inspector.min.js">
@@ -25,13 +27,11 @@
             <a-asset-item id="capsule" src="assets/3d/space_capsule/scene.gltf"></a-asset-item>
             <a-asset-item id="blackhole" src="assets/3d/blackhole/scene.gltf"></a-asset-item>
             <a-asset-item id="hologram" src="assets/3d/earth_hologram/scene.gltf"></a-asset-item>
-            <video id="space" autoplay loop="true" src="assets/videos/space.mp4"> </video>
-            <video id="car" autoplay loop="true" src="assets/videos/car.mp4"> </video>
         </a-assets>
-        <a-obj-model src="#simbiont-obj" mtl="#simbiont-mtl" rotation="-90 0 0" position="0 0 -4" scale="0.01 0.01 0.01"></a-obj-model>
+        <a-obj-model src="#simbiont-obj" mtl="#simbiont-mtl" ammo-body="type: dynamic" ammo-shape="type: box; fit: manual; halfExtents: 0.3 0.3 0.5; offset: 0 0 0.5"  rotation="-90 0 0" position="0 0 -4" scale="0.01 0.01 0.01"></a-obj-model>
         <a-entity wasd-controls="acceleration: 20;" camera="active: true" look-controls="pointerLockEnabled: false"  position="0 2 0">
             <a-cursor position="0 0 -.05" scale=".04 .04 0"></a-cursor>
-            <a-entity gltf-model="#capsule" rotation="0 180 0" position="0 -2.5 -0.5"></a-entity>
+            <a-entity gltf-model="#capsule" rotation="0 180 0" position="0 -2.5 -0.5" ammo-body="type: kinematic" ammo-shape="type: box; fit: manual; halfExtents: 2 2 3 "></a-entity>
         </a-entity>
         <a-entity gltf-model="#curiosity" scale="1 1 1" position="5 0 -4" animation-mixer ></a-entity>
         <a-entity environment="preset: yavapai; groundColor: #553e35; skyType: color; skyColor: #f5b371; fog: 0.9"></a-entity>
