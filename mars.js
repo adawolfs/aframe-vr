@@ -7,7 +7,6 @@ AFRAME.registerComponent('mars-camera', {
             this.intersection = els.detail.intersections[0];
         });
         this.el.addEventListener('raycaster-intersection-cleared', els => {
-            console.log('Player hit cleard!');
             this.intersection = null;
         });
     },
