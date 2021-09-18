@@ -9,7 +9,7 @@
     <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
     <script src="./lib/aframe-environment-component/index.js" ></script>
     <script src="./lib/aframe-physics-system/dist/aframe-physics-system.js"></script>
-    <script src="aframe.js" type="module"></script>
+    <script src="mars.js" type="module"></script>
 
 </head>
 
@@ -29,12 +29,11 @@
             <a-asset-item id="hologram" src="assets/3d/earth_hologram/scene.gltf"></a-asset-item>
         </a-assets>
         <a-obj-model src="#simbiont-obj" mtl="#simbiont-mtl" ammo-body="type: dynamic" ammo-shape="type: box; fit: manual; halfExtents: 0.3 0.3 0.5; offset: 0 0 0.5"  rotation="-90 0 0" position="0 0 -4" scale="0.01 0.01 0.01"></a-obj-model>
-        <a-entity wasd-controls="acceleration: 20;" camera="active: true" look-controls="pointerLockEnabled: false"  position="0 2 0">
-            <a-cursor position="0 0 -.05" scale=".04 .04 0"></a-cursor>
-            <a-entity gltf-model="#capsule" rotation="0 180 0" position="0 -2.5 -0.5" ammo-body="type: kinematic" ammo-shape="type: box; fit: manual; halfExtents: 2 2 3 "></a-entity>
+        <a-entity mars-camera camera="active: true" look-controls="pointerLockEnabled: false" raycaster="objects: .environmentGround; showLine: true; direction: 0, -1, 0; far: 5www" wasd-controls="acceleration: 20;" position="0 6 0">
+            <a-entity gltf-model="#capsule" rotation="0 180 0" position="0 -2.5 -0.5"  ammo-body="type: kinematic" ammo-shape="type: box; fit: manual; halfExtents: 0.3 0.3 0.5; offset: 0 0 0.5"  ></a-entity>
         </a-entity>
         <a-entity gltf-model="#curiosity" scale="1 1 1" position="5 0 -4" animation-mixer ></a-entity>
-        <a-entity environment="preset: yavapai; groundColor: #553e35; skyType: color; skyColor: #f5b371; fog: 0.9"></a-entity>
+        <a-entity id="environment" scale="2 2 2" environment="preset: yavapai; groundColor: #553e35; skyType: color; skyColor: #f5b371; fog: 0.9"></a-entity>
         <!--
             <a-entity gltf-model="#ship"  position="0 -1.5 -1"> </a-entity>
         -->
